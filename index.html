@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explora citas, fotografías de perros y gatos, y datos curiosos obtenidos desde cuatro APIs públicas.">
+  <title>Explorador de contenido aleatorio</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="#inicio" aria-label="Ir al inicio">
+          <span class="brand__symbol" aria-hidden="true">✳</span>
+          <span>random<span class="brand__accent">.</span>lab</span>
+        </a>
+        <span class="course-label">PROGRAMACIÓN WEB III <span aria-hidden="true">/</span> PRÁCTICA DE APIs</span>
+      </div>
+    </header>
+
+    <main id="inicio" class="container">
+      <section class="intro" aria-labelledby="titulo-principal">
+        <div class="intro__copy">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span> CUATRO APIS · INFINITAS SORPRESAS</p>
+          <h1 id="titulo-principal">Explora algo <span>inesperado.</span></h1>
+          <p class="intro__description">Una frase que inspira, una mascota que alegra el día o una curiosidad para compartir. Descubre nuevo contenido con un solo clic.</p>
+        </div>
+        <div class="intro__decoration" aria-hidden="true">
+          <div class="decoration__ring decoration__ring--outer"></div>
+          <div class="decoration__ring decoration__ring--inner"></div>
+          <span class="decoration__spark decoration__spark--top">✦</span>
+          <span class="decoration__spark decoration__spark--bottom">✳</span>
+          <span class="decoration__center">?</span>
+        </div>
+      </section>
+
+      <section class="explorer" aria-labelledby="titulo-explorador">
+        <div class="section-heading">
+          <div>
+            <p class="section-heading__eyebrow">TU ESPACIO DE DESCUBRIMIENTO</p>
+            <h2 id="titulo-explorador">Elige qué descubrir</h2>
+          </div>
+          <span class="section-heading__count"><span class="count__dot" aria-hidden="true"></span> 04 SECCIONES</span>
+        </div>
+
+        <div class="cards-grid">
+          <!-- 1. Citas: DummyJSON -->
+          <article id="seccion-citas" class="explore-card explore-card--quote" aria-labelledby="titulo-citas" aria-busy="true">
+            <div class="card__topline"><span>01 / PALABRAS</span><span class="card__source">DummyJSON</span></div>
+            <div class="card__heading">
+              <span class="card__icon card__icon--quote" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-2 7-8V5H2v8h4c0 3-1 4-3 4v4Zm12 0c3 0 7-2 7-8V5h-8v8h4c0 3-1 4-3 4v4Z"/></svg>
+              </span>
+              <div><h3 id="titulo-citas">Citas & autores</h3><p>Palabras para recordar</p></div>
+            </div>
+            <div class="card__body">
+              <div id="estado-citas" class="loading-state" role="status" aria-live="polite"><span class="spinner" aria-hidden="true"></span><span>Cargando…</span></div>
+              <div id="error-citas" class="error-state" role="alert" hidden></div>
+              <div id="contenido-citas" class="quote-content" hidden>
+                <span class="quote-content__mark" aria-hidden="true">“</span>
+                <blockquote id="texto-cita" class="quote-content__text"></blockquote>
+                <p class="quote-content__author">— <span id="autor-cita"></span></p>
+              </div>
+            </div>
+            <button id="boton-citas" class="action-button action-button--quote" type="button" aria-controls="contenido-citas" disabled>
+              Obtener otra cita <span aria-hidden="true">↗</span>
+            </button>
+          </article>
+
+          <!-- 2. Perros: Dog CEO -->
+          <article id="seccion-perros" class="explore-card explore-card--dog" aria-labelledby="titulo-perros" aria-busy="true">
+            <div class="card__topline"><span>02 / COMPAÑEROS</span><span class="card__source">Dog CEO</span></div>
+            <div class="card__heading">
+              <span class="card__icon card__icon--dog" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 9 3 7 2 12l3 2M18.5 9 21 7l1 5-3 2M7 8c1-2 3-3 5-3s4 1 5 3l2 5v3c0 3-3 5-7 5s-7-2-7-5v-3l2-5Z"/><path d="M9 14h.01M15 14h.01M10 17c1.3 1 2.7 1 4 0"/></svg>
+              </span>
+              <div><h3 id="titulo-perros">Amigos perrunos</h3><p>Una dosis de ternura</p></div>
+            </div>
+            <div class="card__body card__body--image">
+              <div id="estado-perros" class="loading-state" role="status" aria-live="polite"><span class="spinner" aria-hidden="true"></span><span>Cargando…</span></div>
+              <div id="error-perros" class="error-state" role="alert" hidden></div>
+              <div id="contenido-perros" class="image-content" hidden>
+                <img id="imagen-perro" alt="Fotografía aleatoria de un perro" decoding="async">
+              </div>
+            </div>
+            <button id="boton-perros" class="action-button action-button--dog" type="button" aria-controls="contenido-perros" disabled>
+              Mostrar otro perro <span aria-hidden="true">↗</span>
+            </button>
+          </article>
+
+          <!-- 3. Gatos: CATAAS -->
+          <article id="seccion-gatos" class="explore-card explore-card--cat" aria-labelledby="titulo-gatos" aria-busy="true">
+            <div class="card__topline"><span>03 / FELINOS</span><span class="card__source">CATAAS</span></div>
+            <div class="card__heading">
+              <span class="card__icon card__icon--cat" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10 3 3l6 4a9 9 0 0 1 6 0l6-4-1 7c1 2 1 3 1 5 0 4-4 7-9 7s-9-3-9-7c0-2 0-3 1-5Z"/><path d="M8 13h.01M16 13h.01M12 16v2m-2-2 2 1 2-1M2 16l5 1m-5 3 5-1m15-3-5 1m5 3-5-1"/></svg>
+              </span>
+              <div><h3 id="titulo-gatos">Mundo gatuno</h3><p>Curiosidad en cuatro patas</p></div>
+            </div>
+            <div class="card__body card__body--image">
+              <div id="estado-gatos" class="loading-state" role="status" aria-live="polite"><span class="spinner" aria-hidden="true"></span><span>Cargando…</span></div>
+              <div id="error-gatos" class="error-state" role="alert" hidden></div>
+              <div id="contenido-gatos" class="image-content" hidden>
+                <img id="imagen-gato" alt="Fotografía aleatoria de un gato" decoding="async">
+              </div>
+            </div>
+            <button id="boton-gatos" class="action-button action-button--cat" type="button" aria-controls="contenido-gatos" disabled>
+              Mostrar otro gato <span aria-hidden="true">↗</span>
+            </button>
+          </article>
+
+          <!-- 4. Datos curiosos: Useless Facts -->
+          <article id="seccion-datos" class="explore-card explore-card--fact" aria-labelledby="titulo-datos" aria-busy="true">
+            <div class="card__topline"><span>04 / SABÍAS QUE...</span><span class="card__source">Useless Facts</span></div>
+            <div class="card__heading">
+              <span class="card__icon card__icon--fact" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6m-5 3h4M8 14c-2-2-3-4-2-7a6 6 0 0 1 12 0c1 3 0 5-2 7l-1 2H9l-1-2Z"/><path d="M12 2V1m9 9h-2M5 10H3"/></svg>
+              </span>
+              <div><h3 id="titulo-datos">Datos curiosos</h3><p>Aprende algo inesperado</p></div>
+            </div>
+            <div class="card__body">
+              <div id="estado-datos" class="loading-state" role="status" aria-live="polite"><span class="spinner" aria-hidden="true"></span><span>Cargando…</span></div>
+              <div id="error-datos" class="error-state" role="alert" hidden></div>
+              <div id="contenido-datos" class="fact-content" hidden>
+                <span class="fact-content__label">DATO DEL MOMENTO</span>
+                <p id="texto-dato" class="fact-content__text"></p>
+              </div>
+            </div>
+            <button id="boton-datos" class="action-button action-button--fact" type="button" aria-controls="contenido-datos" disabled>
+              Mostrar otro dato <span aria-hidden="true">↗</span>
+            </button>
+          </article>
+        </div>
+        <p class="explorer__footnote"><span aria-hidden="true">✦</span> Cada sección se actualiza de manera independiente, sin recargar la página. Los resultados pueden repetirse.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <span><strong>random.lab</strong> — Explorador de contenido aleatorio</span>
+        <span>Proyecto académico · 2026</span>
+      </div>
+    </footer>
+  </div>
+  <noscript>Para consultar las APIs es necesario habilitar JavaScript en el navegador.</noscript>
+</body>
+</html>
